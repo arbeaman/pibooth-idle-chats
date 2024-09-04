@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# The prerequisites of this script are not included in this repository.
+# Instead of running this script, use the .wav files included in the chats directory.
+
+# This script creates the chat wav files and moves them to the chats directory.
+# It uses another script that was designed to run in the background to do the chats.  That script is no longer needed with this plugin.
+echo "WARNING: This script converts the output of an old photochat script to the wav files used by this pluging."
+echo "The photochat script is not included and is not needed since the output is provided in the chats directory."
+echo "This script will fail without the photochats script that is not publically available."
+echo " Press Control-C to exit"
+read X
 
 cd ~/pibooth-idle-chats/chats/
 rm ~/pibooth-idle-chats/chats/*.wav
@@ -13,18 +23,13 @@ do
    # Create the .wav file in ~/talk/wav
    # Do a single chat at a time so there is no delay
    echo "Creating photochat #'${NUM}'"
+   # Get the name of the wav file photochat produced
    SFILE=$( ~/talk/photochat.sh -w "${NUM}" )
 
    # Convert the talk wave file to one in chats with the proper name
 
    # Get the desired name
    printf -v FILE "photochat%02d.wav" "${NUM}"
-
-   ## 2-photochat00.wav
-   ## Find the most recent file with that name (the name can be preceeded with 1-, 2-, etc.)
-   #echo "Searching for '~/talk/wav/*${FILE}'"
-   #ls -1r ~/talk/wav/*${FILE}
-   #SFILE=`ls -1r ~/talk/wav/*${FILE} | head -1`
 
    if ! [ -f "${SFILE}" ]
    then
